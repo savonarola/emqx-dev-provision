@@ -1,0 +1,38 @@
+- user: ubuntu
+  become: yes
+  hosts: all
+  gather_facts: no
+  tasks:
+  - apt:
+      name:
+      - zsh
+      - build-essential
+      - autoconf
+      - m4
+      - unixodbc-dev
+      - libncurses5-dev
+      - libssl-dev
+      - make
+  - shell: chsh ubuntu -s /usr/bin/zsh
+  - locale_gen: name=ru_RU.UTF-8
+  - shell: timedatectl set-timezone Europe/Moscow
+  - authorized_key: user=ubuntu key=https://github.com/savonarola.keys
+
+- user: ubuntu
+  hosts: all
+  gather_facts: no
+  tasks:
+  - git: repo=git@github.com:savonarola/homedir.git dest=homedir accept_hostkey=yes
+  - shell: ./install.pl chdir=homedir
+  - get_url:
+      url: https://raw.githubusercontent.com/kerl/kerl/master/kerl
+      dest: /home/ubuntu/.tools/kerl
+      mode: '0775'
+  - get_url:
+      url: https://raw.githubusercontent.com/savonarola/emqx-dev-provision/main/install-emqx-erlang.sh
+      dest: /home/ubuntu/.tools/install-emqx-erlang.sh
+      mode: '0775'
+
+
+
+
