@@ -1,6 +1,6 @@
 - user: ubuntu
   become: yes
-  hosts: all
+  hosts: emqx
   gather_facts: no
   tasks:
   - apt:
@@ -19,7 +19,7 @@
   - authorized_key: user=ubuntu key=https://github.com/savonarola.keys
 
 - user: ubuntu
-  hosts: all
+  hosts: emqx
   gather_facts: no
   tasks:
   - git: repo=git@github.com:savonarola/homedir.git dest=homedir accept_hostkey=yes
