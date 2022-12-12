@@ -22,7 +22,10 @@
   hosts: [localhost]
   gather_facts: no
   tasks:
-  - git: repo=git@github.com:savonarola/homedir.git dest=homedir accept_hostkey=yes
+  - git:
+      repo: https://github.com/savonarola/homedir.git
+      dest: homedir
+      accept_hostkey: yes
   - shell: ./install.pl chdir=homedir
   - get_url:
       url: https://raw.githubusercontent.com/kerl/kerl/master/kerl
