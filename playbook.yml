@@ -14,8 +14,7 @@
       - libssl-dev
       - make
   - shell: chsh ubuntu -s /usr/bin/zsh
-  - shell: locale-gen ru_RU.UTF-8
-  - shell: locale-update
+  - locale_gen: name=ru_RU.UTF-8
   - shell: timedatectl set-timezone Europe/Moscow
   - authorized_key: user=ubuntu key=https://github.com/savonarola.keys
 

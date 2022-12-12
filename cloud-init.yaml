@@ -5,6 +5,11 @@ packages:
   - git
   - python3-pip
 
+runcmd:
+  - ['pip3', 'install', 'ansible']
+  - ['ansible-galaxy', 'collection', 'install', 'ansible.posix']
+  - ['ansible-galaxy', 'collection', 'install', 'community.general']
+
 ansible:
   install-method: pip
   package-name: ansible-core
