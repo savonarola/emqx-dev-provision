@@ -1,9 +1,13 @@
+version: v1
 packages_update: true
 
 packages:
   - git
+  - python3-pip
+
 ansible:
-  install_method: pip
+  install-method: pip
+  package-name: ansible-core
   pull:
     url: "https://github.com/savonarola/emqx-dev-provision.git"
-    playbook_name: playbook.yml
+    playbook-name: playbook.yml
