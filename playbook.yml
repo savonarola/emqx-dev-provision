@@ -21,9 +21,11 @@
 - user: ubuntu
   hosts: [localhost]
   gather_facts: no
+  environment:
+    HOME: /home/ubuntu/
   tasks:
-  - git: repo=https://github.com/savonarola/homedir.git dest=homedir accept_hostkey=yes
-  - shell: ./install.pl chdir=homedir
+  - git: repo=https://github.com/savonarola/homedir.git dest=/home/ubuntu/homedir accept_hostkey=yes
+  - shell: ./install.pl chdir=/home/ubuntu/homedir
   - get_url:
       url: https://raw.githubusercontent.com/kerl/kerl/master/kerl
       dest: /home/ubuntu/.tools/kerl
